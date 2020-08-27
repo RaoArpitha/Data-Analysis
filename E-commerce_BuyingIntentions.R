@@ -1,4 +1,4 @@
-
+##Introduction
 ##pakages
 install.packages("magrittr")
 install.packages("dplyr")    # alternative installation of the %>%
@@ -34,12 +34,12 @@ install.packages("kableExtra")
 library(kableExtra)
 list_na <- colnames(onlinedata)[ apply(df, 2, anyNA) ]
 list_na
-numMissingVal <-sapply(onlinedata, function(x) sum(length(which(is.na(x)))))  
+numMissingVal <-sapply(onlinedata, function(x) sum(length(which(is.na(x)))))
 kable(as.data.frame(numMissingVal)) %>% kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% scroll_box(width = "100%", height = "250px")
 ##no Missing Values
 ##-------------------------------------Exploratory Data Analysis--------------------------------------------------------------##
 summary(onlinedata)
-## finding relationship between each variable 
+## finding relationship between each variable
 
 ##--------------------Univariate Analysis-------------------------------------------------------------------------------
 par(mfrow = c(4,4))
@@ -65,10 +65,10 @@ unique(onlinedata$Revenue, incomparables = FALSE)
 unique(onlinedata$VisitorType, incomparables = FALSE)
 unique(onlinedata$Month, incomparables = FALSE)
 
-## Categorical variables -Revenue 
+## Categorical variables -Revenue
 pie_chart1 <- data.frame(Category = c("True", "False"), "freq" = c(1908, 10422))
 
-ggplot(pie_chart1, aes (x="", y = freq, fill = factor(Category))) + 
+ggplot(pie_chart1, aes (x="", y = freq, fill = factor(Category))) +
   geom_bar(width = 1, stat = "identity") +
   geom_text(aes(label = paste(round(freq / sum(freq) * 100, 1), "%")),
             position = position_stack(vjust = 0.5)) +
@@ -86,7 +86,7 @@ ggplot(pie_chart1, aes (x="", y = freq, fill = factor(Category))) +
 ##Visitortype- ##Newvisitor - 1694, other - 85, Returning - 10551
 pie_chart <- data.frame(Category = c("NewVisitor", "Other", "Returning_Visitor"), "freq" = c(1694, 85, 10551))
 
-ggplot(pie_chart, aes (x="", y = freq, fill = factor(Category))) + 
+ggplot(pie_chart, aes (x="", y = freq, fill = factor(Category))) +
   geom_bar(width = 1, stat = "identity") +
   geom_text(aes(label = paste(round(freq / sum(freq) * 100, 1), "%")),
             position = position_stack(vjust = 0.5)) +
@@ -104,7 +104,7 @@ ggplot(pie_chart, aes (x="", y = freq, fill = factor(Category))) +
 ##Weekend
 pie_chart2 <- data.frame(Category = c("True", "False"), "freq" = c(2868, 9462))
 
-ggplot(pie_chart2, aes (x="", y = freq, fill = factor(Category))) + 
+ggplot(pie_chart2, aes (x="", y = freq, fill = factor(Category))) +
   geom_bar(width = 1, stat = "identity") +
   geom_text(aes(label = paste(round(freq / sum(freq) * 100, 1), "%")),
             position = position_stack(vjust = 0.5)) +
@@ -153,22 +153,22 @@ library(scales)
 library(ggtitle)
 attach(onlinedata)
 par(mfrow = c(4,3))
-boxplot(onlinedata$Administrative ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Adminstrative", main = "Administrative vs Revenue")        
-boxplot(onlinedata$Informational ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Informational", main = "Informational vs Revenue")        
-boxplot(onlinedata$Informational_Duration ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Informationduration", main = "Informationduration vs Revenue")        
+boxplot(onlinedata$Administrative ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Adminstrative", main = "Administrative vs Revenue")
+boxplot(onlinedata$Informational ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Informational", main = "Informational vs Revenue")
+boxplot(onlinedata$Informational_Duration ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Informationduration", main = "Informationduration vs Revenue")
 boxplot(onlinedata$Administrative_Duration ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "AdministrativeDuration", main = "AdministrativeDuration vs Revenue")
-boxplot(onlinedata$ProductRelated ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "ProductRelated", main = "Productrelated vs Revenue")        
-boxplot(onlinedata$ProductRelated_Duration ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "ProductRelated_Duration", main = "Productrelated_Duration vs Revenue")        
-boxplot(onlinedata$BounceRates ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "BounceRates", main = "BounceRates vs Revenue")  
+boxplot(onlinedata$ProductRelated ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "ProductRelated", main = "Productrelated vs Revenue")
+boxplot(onlinedata$ProductRelated_Duration ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "ProductRelated_Duration", main = "Productrelated_Duration vs Revenue")
+boxplot(onlinedata$BounceRates ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "BounceRates", main = "BounceRates vs Revenue")
 boxplot(onlinedata$PageValues ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Pagevalues", main = "Pagevalues vs Revenue")
-boxplot(onlinedata$Region ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Region", main = "Region vs Revenue")        
-boxplot(onlinedata$TrafficType ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Traffictype", main = "Traffictype vs Revenue")                
+boxplot(onlinedata$Region ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Region", main = "Region vs Revenue")
+boxplot(onlinedata$TrafficType ~ onlinedata$Revenue, col = "lightblue", pch = 20, xlab = "Buy or Not", ylab = "Traffictype", main = "Traffictype vs Revenue")
 
 ## Revenue vs pages visited and duration of each page
 library(hrbrthemes)
 library(viridis)
 par(mfrow = c(1,2))
-plota<- ggplot(onlinedata, aes(x = Revenue, y=Administrative)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
+plota<- ggplot(onlinedata, aes(x = Revenue, y=Administrative)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
 geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -179,7 +179,7 @@ geom_boxplot(width=0.1, color="black", alpha=0.2) +
   ggtitle("A Violin wrapping a boxplot") +
   xlab("Revenue")
 
-plotad<- ggplot(onlinedata, aes(x = Revenue, y=Administrative_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
+plotad<- ggplot(onlinedata, aes(x = Revenue, y=Administrative_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -189,18 +189,7 @@ plotad<- ggplot(onlinedata, aes(x = Revenue, y=Administrative_Duration)) + geom_
   ) +
   ggtitle("A Violin wrapping a boxplot") +
   xlab("Revenue")
-ploti<- ggplot(onlinedata, aes(x = Revenue, y=Informational)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
-  geom_boxplot(width=0.1, color="black", alpha=0.2) +
-  scale_fill_viridis(discrete = TRUE) +
-  theme_ipsum() +
-  theme(
-    legend.position="none",
-    plot.title = element_text(size=11)
-  ) +
-  ggtitle("A Violin wrapping a boxplot") +
-  xlab("Revenue")
-
-plotid<- ggplot(onlinedata, aes(x = Revenue, y=Informational_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
+ploti<- ggplot(onlinedata, aes(x = Revenue, y=Informational)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -211,7 +200,7 @@ plotid<- ggplot(onlinedata, aes(x = Revenue, y=Informational_Duration)) + geom_v
   ggtitle("A Violin wrapping a boxplot") +
   xlab("Revenue")
 
-plotp<- ggplot(onlinedata, aes(x = Revenue, y=ProductRelated)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
+plotid<- ggplot(onlinedata, aes(x = Revenue, y=Informational_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -222,7 +211,18 @@ plotp<- ggplot(onlinedata, aes(x = Revenue, y=ProductRelated)) + geom_violin() +
   ggtitle("A Violin wrapping a boxplot") +
   xlab("Revenue")
 
-plotpd<- ggplot(onlinedata, aes(x = Revenue, y=ProductRelated_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') + 
+plotp<- ggplot(onlinedata, aes(x = Revenue, y=ProductRelated)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
+  geom_boxplot(width=0.1, color="black", alpha=0.2) +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_ipsum() +
+  theme(
+    legend.position="none",
+    plot.title = element_text(size=11)
+  ) +
+  ggtitle("A Violin wrapping a boxplot") +
+  xlab("Revenue")
+
+plotpd<- ggplot(onlinedata, aes(x = Revenue, y=ProductRelated_Duration)) + geom_violin() + geom_violin(trim=FALSE, fill= "pink", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -238,7 +238,7 @@ grid.arrange(plota, plotad, ploti, plotid, plotp, plotpd, nrow = 3, ncol = 2)
 dev.off()
 library(GGally)
 ##Bouncerate, exitrares, pagevalues vs Revenue
-plotb <- ggplot(onlinedata, aes(x=BounceRates, fill=Revenue)) + geom_density(alpha=0.4) + labs(y = " ") + 
+plotb <- ggplot(onlinedata, aes(x=BounceRates, fill=Revenue)) + geom_density(alpha=0.4) + labs(y = " ") +
 scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"))
 
 
@@ -252,7 +252,7 @@ grid.arrange(plotb, plote, plotpv, nrow = 3)
 
 
 table(Month)
-##Monthly revenue 
+##Monthly revenue
 onlinedata$Month <- as.character(onlinedata$Month)
 onlinedata$Month[onlinedata$Month == "June"] <- "Jun"
 onlinedata$Month <- as.factor(onlinedata$Month)
@@ -271,19 +271,19 @@ grid.arrange(plots, plotsr, ncol = 2)
 
 ##Operating system , browser, traffictype, region vs Revenue
 par(mfrow = c(3,3))
-pt1<-ggplot(data.frame(onlinedata), aes(OperatingSystems, fill=Revenue)) + geom_bar() + labs(x = "Operating Systems") + labs(y = " ") + 
+pt1<-ggplot(data.frame(onlinedata), aes(OperatingSystems, fill=Revenue)) + geom_bar() + labs(x = "Operating Systems") + labs(y = " ") +
   scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()
-pt2<-ggplot(data.frame(onlinedata), aes(Browser, fill=Revenue)) + geom_bar() + labs(x = "Browser") + labs(y = " ") + 
-  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()                                                                                                                                                                                                       
-pt3<-ggplot(data.frame(onlinedata), aes(Region, fill=Revenue)) + geom_bar() + labs(x = "Region") + labs(y = " ") + 
-  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()                                                                                                                                                                                                       
-pt4<-ggplot(data.frame(onlinedata), aes(TrafficType, fill=Revenue)) + geom_bar() + labs(x = "TrafficType") + labs(y = " ") + 
-  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()                                                                                                                                                                                                       
+pt2<-ggplot(data.frame(onlinedata), aes(Browser, fill=Revenue)) + geom_bar() + labs(x = "Browser") + labs(y = " ") +
+  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()
+pt3<-ggplot(data.frame(onlinedata), aes(Region, fill=Revenue)) + geom_bar() + labs(x = "Region") + labs(y = " ") +
+  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()
+pt4<-ggplot(data.frame(onlinedata), aes(TrafficType, fill=Revenue)) + geom_bar() + labs(x = "TrafficType") + labs(y = " ") +
+  scale_x_continuous(breaks = 1:8) +  scale_fill_manual(values=c("lightblue2", "lightpink", "black")) + coord_cartesian(xlim = c(0, 8), ylim = c(0, 8000)) + theme_classic()
 grid.arrange(pt1, pt2, pt3, pt4, nrow = 4)
 
 
 ##Pagesvisited by visitor type
-ggplot(onlinedata, aes(x = VisitorType, y=Administrative)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') + 
+ggplot(onlinedata, aes(x = VisitorType, y=Administrative)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -294,7 +294,7 @@ ggplot(onlinedata, aes(x = VisitorType, y=Administrative)) + geom_violin() + geo
   ggtitle("Administrative vs VisitorType") +
   xlab("VisitorType")
 
-ggplot(onlinedata, aes(x = VisitorType, y=Informational)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') + 
+ggplot(onlinedata, aes(x = VisitorType, y=Informational)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -305,7 +305,7 @@ ggplot(onlinedata, aes(x = VisitorType, y=Informational)) + geom_violin() + geom
   ggtitle("Informational vs VisitorType") +
   xlab("VisitorType")
 
-ggplot(onlinedata, aes(x = VisitorType, y=ProductRelated)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') + 
+ggplot(onlinedata, aes(x = VisitorType, y=ProductRelated)) + geom_violin() + geom_violin(trim=FALSE, fill= "deepskyblue", color='black') +
   geom_boxplot(width=0.1, color="black", alpha=0.2) +
   scale_fill_viridis(discrete = TRUE) +
   theme_ipsum() +
@@ -320,7 +320,7 @@ ggplot(onlinedata, aes(x = VisitorType, y=ProductRelated)) + geom_violin() + geo
 
 ##Monthly Revenue
 
-plotm <- ggplot(data.frame(onlinedata), aes(Month, fill=Revenue)) + geom_bar() + 
+plotm <- ggplot(data.frame(onlinedata), aes(Month, fill=Revenue)) + geom_bar() +
   labs(x = "Month") + labs(y = " ") + scale_fill_manual(values =c("lightseagreen", "lightskyblue2"))
 ##Weekend Revenue
 plotw <-ggplot(data.frame(onlinedata), aes(Weekend, fill=Revenue)) + geom_bar() + labs(x = "Weekend") + labs(y = " ") + scale_fill_manual(values =c("lightseagreen", "lightskyblue2"))
@@ -334,31 +334,31 @@ grid.arrange(plotm, plotw, plotVR, nrow = 3)
 ##revenue based on visitor type vs Prodrelated
 ggplot(onlinedata, aes(x=VisitorType, y=ProductRelated, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="Visitor type", y="ProductRelated") + 
+  labs( x="Visitor type", y="ProductRelated") +
   scale_fill_manual(values =c("Salmon4", "Salmon3"))
 
 ##Month vs pagevalues wrt Revenue
  ggplot(onlinedata, aes(x=Month, y=PageValues, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="Month", y="PageValues") + 
+  labs( x="Month", y="PageValues") +
   scale_fill_manual(values =c("indianred4", "indianred3"))
 
 ##Month vs ExitRates wrt revenue
 ggplot(onlinedata, aes(x=Month, y=ExitRates, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="Month", y="ExitRates") + 
+  labs( x="Month", y="ExitRates") +
   scale_fill_manual(values =c("goldenrod4", "goldenrod3"))
 
 ##Month vs Bouncerate wrt Revenue
 ggplot(onlinedata, aes(x=Month, y=BounceRates, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="Month", y="BounceRates") + 
+  labs( x="Month", y="BounceRates") +
   scale_fill_manual(values =c("tan2", "tan"))
 
 ##visitortype vs BounceRates wrt Revenue
 ggplot(onlinedata, aes(x=VisitorType, y=BounceRates, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="VisitorType", y="BounceRates") + 
+  labs( x="VisitorType", y="BounceRates") +
   scale_fill_manual(values =c("firebrick4", "firebrick3"))
 grid.arrange(plotvp, plotMp, plotMe,plotMb, plotVb, nrow = 3, col = 3)
 
@@ -366,14 +366,14 @@ grid.arrange(plotvp, plotMp, plotMe,plotMb, plotVb, nrow = 3, col = 3)
 ## VisitorTpye vs ExitRates wrt Revenue
 ggplot(onlinedata, aes(x=VisitorType, y=ExitRates, fill = Revenue)) + scale_y_continuous(labels = scales::comma) +
   geom_boxplot() + geom_smooth(method="loess", se=F) +
-  labs( x="VisitorType", y="ExitRates") + 
+  labs( x="VisitorType", y="ExitRates") +
   scale_fill_manual(values =c("gold3", "gold2"))
 
 ##correlation
 library(ggplot2)
 library(ggcorrplot)
 library(RColorBrewer)
-ggcorr(onlinedata[, 1:10], method=c("everything", "pearson"), 
+ggcorr(onlinedata[, 1:10], method=c("everything", "pearson"),
        geom = "tile",
        max_size = 10,
        min_size = 2,
@@ -423,7 +423,7 @@ attach(onlinedata)
 ##Logistic Regression
 logisticmodel <- glm(Revenue ~ ., data = trainset, family = "binomial")
 summary(logisticmodel)
-sum(predicted ==  TRUE & actual == TRUE) / sum(actual == TRUE) 
+sum(predicted ==  TRUE & actual == TRUE) / sum(actual == TRUE)
 sum(predicted == FALSE & actual == FALSE) / sum(actual == FALSE)
 plot(logisticmodel)
 predict.Probability <- predict(logisticmodel, type = "response")
@@ -494,16 +494,3 @@ table(actual, predicted)
 actual <- testset$Revenue
 sum(actual==predicted)/nrow(testset)
 ##-------------------------------------End---------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
